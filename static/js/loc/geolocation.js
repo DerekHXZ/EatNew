@@ -32,8 +32,9 @@ var GeoLo = new function(){
 			position: new google.maps.LatLng(lat, lon)
 		});
 		marker.setMap(map);
-		marker.addEventListener("click",function(){
-			iw.open();
+		google.maps.event.addListener(marker,"click",function(){
+			iw.open(map, this);
+			map.setCenter(marker.getPosition());
 		});
 	};
 	this.getMap = function (elem, lat, lon) {
