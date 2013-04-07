@@ -26,11 +26,7 @@ def redirect_page():
 
 @app.route("/home")
 def home_page():
-    data = getdata.getData()
-    products = getproducts.getProducts(data)
-    for listing in products:
-        print(listing.IMAGE_URL)
-    return render_template("main_page.html", products=products)
+    return render_template("index.html")
 
 app.debug = True
 app.secret_key = "/x85/xfe/x98j/xc8FQb-/x88/xaf/x87/xda/xed/xba/n/x1dk/xbb//0b/xb06/xd2/x87"
