@@ -7,11 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def login_page():
-    return render_template("login.html")
-
-@app.route("/auth")
-def foursquare_connect():
-    return redirect(makeClient().oauth.auth_url());
+    return render_template("login.html", auth_url = makeClient().oauth.auth_url())
 
 @app.route("/login")
 def redirect_page():
