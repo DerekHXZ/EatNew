@@ -1,8 +1,5 @@
 # imports
 from init import makeClient
-import getdata
-import getproducts
-import synonyms
 from flask import Flask, redirect, session, request, url_for, render_template, flash
 from foursquare import Foursquare
 
