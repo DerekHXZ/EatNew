@@ -18,6 +18,7 @@ var decode_entities = (function() {
     }
     return decode_HTML_entities;
 })();
+$ = function(e){return document.getElementById(e);};
 window.addEventListener("load",function(){
 	if(venues == null){
 		alert("Egad! No data.");
@@ -31,11 +32,17 @@ window.addEventListener("load",function(){
 	}
 	if(vn.length == 0)
 		return;
-	var w = GeoLo.addInfoWindow(vn[0].location.lat, vn[0].location.lng, vn[0].name);
-	var map = GeoLo.getMap("gmap", vn[0].location.lat, vn[0].location.lng, w); 
-	for(var i = 1; i < Math.min(10, vn.length); i++){
+	var map = GeoLo.getMap("gmap", vn[0].location.lat, vn[0].location.lng); 
+	for(var i = 0; i < Math.min(10, vn.length); i++){
+		var title = document.createElement("h3");
+		title.appendChild(document.createTextNode(vn[i].name));
+		var information = document.createTextNode(vn[i].location.address);
+		var p = document.createElement("p");
+		p.appendChild(information);
+		$("listing").appendChild(title);
+		$("listing").appendChild(p);
 		GeoLo.addMarker(map, vn[i].location.lat, vn[i].location.lng, 
 			GeoLo.addInfoWindow(vn[i].location.lat, vn[i].location.lng, vn[i].name));
 	}
-	w.open();
+	$("listing").
 });
