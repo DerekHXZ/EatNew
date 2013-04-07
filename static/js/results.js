@@ -29,4 +29,10 @@ window.addEventListener("load",function(){
 	}catch(e){
 		alert("Error! Parse Error");
 	}
-}
+	if(vn.length == 0)
+		return;
+	var map = GeoLo.getMap("gmap", vn[0].location.lat, vn[0].location.lng); 
+	for(var i = 1; i < Math.min(10, vn.length); i++){
+		GeoLo.addMarker(map, vn[i].location.lat, vn[i].location.lng, vn[i].name);
+	}
+});
