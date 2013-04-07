@@ -1,4 +1,5 @@
 var GeoLo = new function(){
+	var iwlist = [];
 	this.getLocation = function (callback) {
 		if(navigator.geolocation == null || navigator.geolocation.getCurrentPosition == null){
 			callback({
@@ -25,6 +26,7 @@ var GeoLo = new function(){
 			position: new google.maps.LatLng(lat, lon),
 			content: data
 		});
+		iwlist.push(iw);
 		return iw;
 	};
 	this.addMarker = function (map, lat, lon, iw){
@@ -33,7 +35,10 @@ var GeoLo = new function(){
 		});
 		marker.setMap(map);
 		google.maps.event.addListener(marker,"click",function(){
-			iw.open(map, this);
+			for(var x = 0; x < iwlist.length; x++){
+				iwlist[x].close();
+			}
+			iw.open(map, marker);
 			map.setCenter(marker.getPosition());
 		});
 	};
