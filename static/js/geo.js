@@ -21,32 +21,6 @@ function smoothScrollTo(e){
 window.addEventListener("load",function(){
 	GeoLo.getLocation(function(coords){
 		var ifr = GeoLo.getMap("gmap", coords.latitude, coords.longitude);
-		_("map").appendChild(ifr);
 	});
 	return;
-	_("finishRetBtn").addEventListener("click",function(){
-		smoothScrollTo("section1");
-		_("section2").style.display = "none";
-		_("section3").style.display = "none";
-		_("section4").style.display = "none";
-		$("#fileselection").text("");
-		Main = {
-			fileSelection:"",
-			coords:{lat:0,lon:0},
-			timeBegin:"",
-			timeEnd:"",
-			accessToken:Main.accessToken,
-			requestSent: false
-		}
-	});
-	_("pickerbtn").addEventListener("click",function(){
-		filepicker.pick({},function(g){
-			$("#section3").css("display","");
-			smoothScrollTo("section3");
-			$("#fileselection").text("You've selected \"" + g.filename + "\"!");
-			Main.fileSelection = g;
-		},function(h){
-			
-		});
-	});
 });
