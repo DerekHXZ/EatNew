@@ -44,5 +44,4 @@ window.addEventListener("load",function(){
 		GeoLo.addMarker(map, vn[i].location.lat, vn[i].location.lng, 
 			GeoLo.addInfoWindow(vn[i].location.lat, vn[i].location.lng, vn[i].name));
 	}
-	$("listing").
 });
