@@ -31,6 +31,27 @@ def home_page():
         return redirect("/")
     return render_template("index.html")
 
+@app.route("/list")
+def fetch_list():
+   if 'access_token' not in session:
+        return redirect("/")
+   client = foursquare.Foursquare(session['access_token'])
+   ll = request.form['lat']+','+request.form['lon']
+   venues = client.venues.search(
+           params={
+               'll': ll;
+               'intent': 'browse';
+               'radius': '1000';
+               'categoryId': '4d4b7105d754a06374d81259' # Restaurant
+               })
+   history = client.users.checkins().items
+   for place in history:
+       if id in place:
+           for i = 0 : len(venues)
+               if venues[i].id == place.id:
+                   del venues[i]
+   return render_template('list.html', venues[1:5])
+
 app.debug = True
 app.secret_key = "/x85/xfe/x98j/xc8FQb-/x88/xaf/x87/xda/xed/xba/n/x1dk/xbb//0b/xb06/xd2/x87"
 if __name__ == "__main__":
