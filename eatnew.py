@@ -7,7 +7,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def login_page():
-    return render_template("login.html", auth_url = makeClient().oauth.auth_url())
+    if 'access_token' not in session:
+        return render_template("login.html", auth_url = makeClient().oauth.auth_url())
+    else:
+        return redirect("/home")
 
 @app.route("/login")
 def redirect_page():
@@ -17,8 +20,15 @@ def redirect_page():
     session['access_token'] = access_token
     return redirect("/home")
 
+@app.route("/logout")
+def logout():
+    del session['access_token']
+    return redirect("/")
+
 @app.route("/home")
 def home_page():
+    if 'access_token' not in session:
+        return redirect("/")
     return render_template("index.html")
 
 app.debug = True
