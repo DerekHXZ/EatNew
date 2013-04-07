@@ -7,21 +7,11 @@
         <meta name="description" content="" />
         <link href="../static/style.css" rel="stylesheet" type="text/css" media="all" />
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-        <link href="../static/jquery.galleryview.css" rel="stylesheet" type="text/css" media="all" />
-        <script type="text/javascript" src="../static/jquery.galleryview.js"></script>
-        <script type="text/javascript" src="../static/jquery.easing.js"></script>
-        <script type="text/javascript" src="../static/jquery.timers.js"></script>
         <script type="text/javascript">
             $(document).ready(function ()
             {
-                $('#listings').css({ display: 'none' }).fadeIn(1200);
+                $('#wrapper').css({ display: 'none' }).fadeIn(1200);
                 $('#topbar').css({ display: 'none' }).fadeIn(600);
-                $('#list').galleryView({
-                    frame_width: 180,
-                    frame_height: 90,
-                    show_captions: true,
-                    show_filmstrip_nav: false
-                });
             });
         </script>
     </head>
@@ -31,13 +21,15 @@
                 <div id="logo">
                     <img src="../static/images/etme.png" />
                 </div>
+                <div id="credit">
+                    <a href="http://www.etsy.com" id="credittext">Powered by Etsy</a>
+                </div>
             </div>
-            <div id="listings">
-                <ul id="list">
-                    {% for listing in products %}
-                    <li><img src="{{ listing.IMAGE_URL }}" title="{{ listing.TITLE }}"/></li>
-                    {% endfor %}
-                </ul>
+            <div id="wrapper">
+                <span id="logintext">Log in with</span>
+                <div id="button">
+                    <a href="http://localhost:5000/auth"><img src="../static/images/fslogo.png" /></a>
+                </div>
             </div>
         </body>
     </center>
