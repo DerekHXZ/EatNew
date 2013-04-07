@@ -1,26 +1,19 @@
-var Main = {
-	fileSelection:"",
-	coords:{lat:0,lon:0},
-	timeBegin:"",
-	timeEnd:"",
-	accessToken:"",
-	uid: 0,
-	requestSent: false
-}
 var _ = function(e){return document.getElementById(e);}
-function smoothScrollTo(e){
-	var elm = document.getElementById(e);
-	if(elm == null) return;
-	var prev = window.pageYOffset;
-	var xnew = Math.ceil(elm.offsetTop - (elm.offsetTop - window.pageYOffset) / 2);
-	window.scrollTo(0, xnew);
-	if(Math.abs(xnew - elm.offsetTop) > 1 && window.pageYOffset != prev){
-		setTimeout(function(){smoothScrollTo(e);},80);
-	}
-}
+
 window.addEventListener("load",function(){
 	GeoLo.getLocation(function(coords){
+	    if(coords.accuracy == -1 && coords.message != null){
+			document.getElementById("gmap").innerHTML = "<div style='margin:auto'> Loading Map Failed </div>";
+			document.getElementById("gmap").style.backgroundColor = "#eee";
+			document.getElementById("submitCoords").addEventListener("click",function(){alert("Geodata API Failed");});
+			return;
+		}
 		var ifr = GeoLo.getMap("gmap", coords.latitude, coords.longitude);
+		document.getElementById("val_lat").value = coords.latitude;
+		document.getElementById("val_lon").value = coords.longitude;
+		document.getElementById("submitCoords").addEventListener("click",function(){
+			document.getElementById("postfrm").submit();
+		});
 	});
 	return;
 });

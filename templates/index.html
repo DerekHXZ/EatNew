@@ -42,8 +42,12 @@
 
     <div class="container">
 	<div class="row">
+		<form action="/list" id="postfrm" method="POST">
+			<input id="val_lat" type="hidden" name="lat" value="">
+			<input id="val_lon" type="hidden" name="lng" value="">
+		</form>
 		<div class="span6"><h1>EatNew</h1><p>Find somewhere new to eat that's close.</p>
-			<button class="btn btn-primary">Eat Somewhere New</button>
+			<button id="submitCoords" class="btn btn-primary">Eat Somewhere New</button>
 		</div>
 		<div class="span6">
             <div id = "gmap" style="width:640px; height:480px;"></div>

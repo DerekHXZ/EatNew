@@ -13,6 +13,13 @@ var GeoLo = new function(){
 			callback(cb.coords);
 		});
 	};
+	this.addMarker = function (map, lat, lon, data){
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(lat, lon),
+			title: data
+		});
+		marker.setMap(map);
+	};
 	this.getMap = function (elem, lat, lon) {
 		var mapOptions = {
 			center: new google.maps.LatLng(lat,lon),
@@ -25,7 +32,7 @@ var GeoLo = new function(){
 		});                  
 		marker.setMap(map);  
 		return map;          
-	};                       
+	};
 	this.getAddress = function getLat(address, callback) {
         if (address) {       
             var geocoder = new google.maps.Geocoder();
