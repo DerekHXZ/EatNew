@@ -31,8 +31,11 @@ window.addEventListener("load",function(){
 	}
 	if(vn.length == 0)
 		return;
-	var map = GeoLo.getMap("gmap", vn[0].location.lat, vn[0].location.lng); 
+	var w = GeoLo.addInfoWindow(vn[0].location.lat, vn[0].location.lng, vn[0].name);
+	var map = GeoLo.getMap("gmap", vn[0].location.lat, vn[0].location.lng, w); 
 	for(var i = 1; i < Math.min(10, vn.length); i++){
-		GeoLo.addMarker(map, vn[i].location.lat, vn[i].location.lng, vn[i].name);
+		GeoLo.addMarker(map, vn[i].location.lat, vn[i].location.lng, 
+			GeoLo.addInfoWindow(vn[i].location.lat, vn[i].location.lng, vn[i].name));
 	}
+	w.open();
 });

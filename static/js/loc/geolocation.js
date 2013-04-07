@@ -20,12 +20,21 @@ var GeoLo = new function(){
 			});
 		});
 	};
-	this.addMarker = function (map, lat, lon, data){
-		var marker = new google.maps.Marker({
+	this.addInfoWindow = function(lat, lon, data){
+		var iw = new google.maps.InfoWindow({
 			position: new google.maps.LatLng(lat, lon),
-			title: data
+			content: data
+		});
+		return iw;
+	};
+	this.addMarker = function (map, lat, lon, iw){
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(lat, lon)
 		});
 		marker.setMap(map);
+		marker.addEventListener("click",function(){
+			iw.open();
+		});
 	};
 	this.getMap = function (elem, lat, lon) {
 		var mapOptions = {
