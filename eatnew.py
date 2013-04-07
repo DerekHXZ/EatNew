@@ -47,10 +47,10 @@ def fetch_list():
                }) ['venues']
    history = (client.users.checkins())['checkins']['items']
    for place in history:
-       if id in place:
-           for i in range(0 , len(venues)):
-               if venues[i].id == place.id:
-                   del venues[i]
+       if 'id' in place['venue']:
+           for venue in venues:
+               if venue['id'] == place['venue']['id']:
+                   venues.remove(venue)
    return render_template('list.html', data = json.dumps(venues))
 
 app.debug = True
