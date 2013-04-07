@@ -11,6 +11,13 @@ var GeoLo = new function(){
 		}
 		navigator.geolocation.getCurrentPosition(function(cb){
 			callback(cb.coords);
+		}, function(){
+			callback({
+				accuracy: -1,
+				latitude: 0,
+				longitude: 0,
+				message: "Error: Geolocation API not enabled or error with location"
+			});
 		});
 	};
 	this.addMarker = function (map, lat, lon, data){
